@@ -1,51 +1,43 @@
 const { resolve } = require('path')
-const themeConfig = require('squarecrypto-vuepress-devkit-theme/config')
+const themeConfig = require('@spiralbtc/vuepress-devkit-theme/config')
 
 const title = 'Bitcoin Dev Kit Documentation'
 const baseUrl = 'https://bitcoindevkit.org'
 const githubUrl = 'https://github.com/bitcoindevkit'
 const discordUrl = 'https://discord.gg/dstn4dQ'
 const twitterUrl = 'https://twitter.com/intent/follow?screen_name=bitcoindevkit'
+const nostrUrl = 'nostr:npub13dk3dke4zm9vdkucm7f6vv7vhqgkevgg3gju9kr2wzumz7nrykdq0dgnvc'
 const themeColor = '#ffffff'
 
-const docsSidebar = [
+const builtWithBdkSidebar = [
   {
-    title: 'Documentation',
+    title: 'Built With BDK',
     collapsable: false,
     children: [
-      ['/getting-started', 'Getting Started'],
-      {
-        title: "BDK-CLI",
-        collapsable: true,
-        children: [
-          '/bdk-cli/installation',
-          '/bdk-cli/concept',
-          '/bdk-cli/interface',
-          '/bdk-cli/regtest',
-          '/bdk-cli/compiler',
-          '/bdk-cli/playground'
-        ]
-      },
-      '/descriptors/',
+      ["/adoption/all.md", "All"],
+      ["/adoption/mobile.md", "Mobile"],
+      ["/adoption/desktop.md", "Desktop"],
+      ["/adoption/hardware.md", "Hardware"],
+      ["/adoption/web.md", "Web"],
+      ["/adoption/custodial.md", "Custodial"],
+      ["/adoption/exchange.md", "Exchange"],
+      ["/adoption/infrastructure.md", "Infrastructure"],
     ]
-  },
-  {
-    title: 'API Reference',
-    collapsable: false,
-    children: [
-      ['https://docs.rs/bdk/', 'Stable Docs'],
-      ['https://bitcoindevkit.org/docs-rs/bdk/nightly/latest/bdk/', 'Nightly Docs']
-    ],
   }
 ]
 
-const tutorialSidebar = [
+const foundationSidebar = [
   {
-    title: 'Tutorials',
+    title: 'Foundation',
     collapsable: false,
     children: [
-      '/tutorials/hello-world',
-    ],
+      ['/foundation/about.md', 'About Us'],
+      ['/foundation/supporters.md', 'Supporters'],
+      ['/foundation/grantees.md', 'Grantees'],
+      ['/foundation/grants.md', 'Grants'],
+      ['/foundation/members.md', 'Members'],
+      ['/foundation/pgp.md', 'PGP Keys'],
+    ]
   }
 ]
 
@@ -64,7 +56,7 @@ const blogSidebar = [
 module.exports = {
   title,
   description: 'The Bitcoin Dev Kit (BDK) project (originally called Magical Bitcoin 🧙) aims to build a collection of tools and libraries that are designed to be a solid foundation for cross platform Bitcoin wallets, along with a fully working reference implementation wallet called Magical Bitcoin.',
-  theme: resolve(__dirname, '../../node_modules/squarecrypto-vuepress-devkit-theme'),
+  theme: resolve(__dirname, '../../node_modules/@spiralbtc/vuepress-devkit-theme'),
   ...themeConfig({
     baseUrl,
     title,
@@ -81,32 +73,31 @@ module.exports = {
     sidebarDepth: 0,
     nav: [
       {
-        text: 'Docs',
-        link: '/getting-started/'
+        text: 'Github',
+        link: 'https://github.com/bitcoindevkit'
       },
       {
-        text: 'Tutorials',
-        link: '/tutorials/hello-world'
+        text: 'Docs',
+        link: '/docs/'
+      },
+      {
+        text: 'Adoption',
+        link: '/adoption/all.md'
+      },
+      {
+        text: 'Foundation',
+        link: '/foundation/'
       },
       {
         text: 'Blog',
         link: '/blog/'
       },
-      {
-        text: 'Discord',
-        link: discordUrl
-      },
-      {
-        text: 'GitHub',
-        link: githubUrl,
-        rel: 'noopener noreferrer'
-      }
     ],
     sidebar: {
+      '/adoption/': builtWithBdkSidebar,
       '/_blog/': blogSidebar,
       '/blog/': blogSidebar,
-      '/tutorials/': tutorialSidebar,
-      '/': docsSidebar,
+      '/foundation/': foundationSidebar,
     },
     footer: {
       links: [
@@ -114,16 +105,16 @@ module.exports = {
           title: 'Docs',
           children: [
             {
-              text: 'Getting Started',
-              link: '/getting-started/'
+              text: 'Book',
+              link: '/docs/#book'
             },
             {
-              text: 'BDK-CLI',
-              link: '/bdk-cli/installation/'
+              text: 'Rust APIs',
+              link: '/docs/#rust-apis'
             },
             {
-              text: 'Descriptors',
-              link: '/descriptors/'
+              text: 'Other APIs',
+              link: '/docs/#other-apis'
             }
           ]
         },
@@ -133,6 +124,11 @@ module.exports = {
             {
               text: 'GitHub',
               link: githubUrl,
+              rel: 'noopener noreferrer'
+            },
+            {
+              text: 'Nostr',
+              link: nostrUrl,
               rel: 'noopener noreferrer'
             },
             {
@@ -156,7 +152,11 @@ module.exports = {
             },
             {
               text: 'Supporters',
-              link: '/supporters/'
+              link: '/foundation/supporters/'
+            },
+            {
+              text: 'BDK Foundation',
+              link: '/foundation/'
             }
           ]
         }
